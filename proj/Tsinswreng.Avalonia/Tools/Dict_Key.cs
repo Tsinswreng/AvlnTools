@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Tsinswreng.Avalonia.Tools;
 
 public interface IDict_Key<K,V>
@@ -6,8 +8,6 @@ public interface IDict_Key<K,V>
 	public IDictionary<K, V> Dict { get; set; }
 	public K Key { get; set; }
 }
-
-
 
 
 public class Dict_Key<K,V>
