@@ -46,7 +46,7 @@ public class ViewNavigator
 	public void GoTo(Control view){
 		Stack.Add(view);
 		Current.Content = view;
-		if(view is IHasViewNavigator navigatorView){
+		if(view is I_ViewNavigator navigatorView){
 			navigatorView.ViewNavigator = this;
 		}
 	}
@@ -64,7 +64,7 @@ class StackView
 
 class Welcome
 	:UserControl
-	,IHasViewNavigator
+	,I_ViewNavigator
 {
 	public IViewNavigator? ViewNavigator{get;set;}
 	public Welcome(){
@@ -80,7 +80,7 @@ class Welcome
 
 class Login
 	:UserControl
-	,IHasViewNavigator
+	,I_ViewNavigator
 {
 	public IViewNavigator? ViewNavigator{get;set;}
 	public Login(){
