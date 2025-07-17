@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Tsinswreng.CsCore;
 
-namespace Tsinswreng.Avalonia.Tools;
+namespace Tsinswreng.AvlnTools.Tools;
 public partial class IndexGrid
 	:ICollection<Control>
 {

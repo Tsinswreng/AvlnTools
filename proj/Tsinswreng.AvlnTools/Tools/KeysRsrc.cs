@@ -1,4 +1,4 @@
-namespace Tsinswreng.Avalonia.Tools;
+namespace Tsinswreng.AvlnTools.Tools;
 
 public class KeysRsrc{
 protected static KeysRsrc? _Inst = null;

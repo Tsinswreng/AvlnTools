@@ -1,6 +1,6 @@
 using System;
 
-namespace Tsinswreng.Avalonia.Controls.IF;
+namespace Tsinswreng.AvlnTools.Controls.IF;
 
 public interface ISwipeBtn{
 	public event EventHandler<SwipeEventArgs> OnSwipe;

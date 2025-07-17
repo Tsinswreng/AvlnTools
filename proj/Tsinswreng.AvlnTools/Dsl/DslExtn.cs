@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Avalonia.Collections;
 using Avalonia.Controls;
 
-namespace Tsinswreng.Avalonia.Dsl;
+namespace Tsinswreng.AvlnTools.Dsl;
 using Controls = global::Avalonia.Controls.Controls;
 public static class DslExtn{
 	//[Obsolete("類型推斷時優先根據前ʹ參數、則TItem恆潙Control")]

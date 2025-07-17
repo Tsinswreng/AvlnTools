@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 
-namespace Tsinswreng.Avalonia.Dsl;
+namespace Tsinswreng.AvlnTools.Dsl;
 
 public class DslFactory{
 	public static Button Button(){return new Button();}

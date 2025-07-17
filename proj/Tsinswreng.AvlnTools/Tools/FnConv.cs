@@ -3,7 +3,7 @@ using System.Globalization;
 using Avalonia;
 using Avalonia.Data.Converters;
 
-namespace Tsinswreng.Avalonia.Tools;
+namespace Tsinswreng.AvlnTools.Tools;
 
 public class ParamFnConvtr<TIn, TRet>
 	:IValueConverter

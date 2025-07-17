@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Tsinswreng.Avalonia.Tools;
+namespace Tsinswreng.AvlnTools.Tools;
 
 public interface IDict_Key<K,V>
 	where K : notnull

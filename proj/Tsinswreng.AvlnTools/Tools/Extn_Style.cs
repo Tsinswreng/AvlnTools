@@ -1,7 +1,7 @@
 using Avalonia;
 using Avalonia.Styling;
 
-namespace Tsinswreng.Avalonia.Tools;
+namespace Tsinswreng.AvlnTools.Tools;
 
 public static class Extn_Style{
 	public static Style Set(

@@ -3,9 +3,9 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Styling;
-using Tsinswreng.Avalonia.Tools;
+using Tsinswreng.AvlnTools.Tools;
 
-namespace Tsinswreng.Avalonia.Dsl;
+namespace Tsinswreng.AvlnTools.Dsl;
 
 public static class DslStyle{
 

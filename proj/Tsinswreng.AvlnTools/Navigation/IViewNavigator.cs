@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 using Control = Avalonia.Controls.ContentControl;
-namespace Tsinswreng.Avalonia.Navigation;
+namespace Tsinswreng.AvlnTools.Navigation;
 
 
 public interface IViewNavigator{

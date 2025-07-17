@@ -1,4 +1,4 @@
-namespace Tsinswreng.Avalonia.Tools;
+namespace Tsinswreng.AvlnTools.Tools;
 public class PsdCls{
 	protected static PsdCls? _inst;
 	public static PsdCls Inst => _inst??= new PsdCls();

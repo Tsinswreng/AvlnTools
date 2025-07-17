@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using Avalonia.Data.Converters;
-using Tsinswreng.Avalonia.Tools;
+using Tsinswreng.AvlnTools.Tools;
 
-namespace Tsinswreng.Avalonia.Converters;
+namespace Tsinswreng.AvlnTools.Converters;
 
 public class ConvDictEntry<K, V> : IValueConverter
 	where K : notnull

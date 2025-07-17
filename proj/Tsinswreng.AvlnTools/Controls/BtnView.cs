@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 
-namespace Tsinswreng.Avalonia.Controls;
+namespace Tsinswreng.AvlnTools.Controls;
 
 public partial class BtnView<T> : UserControl{
 

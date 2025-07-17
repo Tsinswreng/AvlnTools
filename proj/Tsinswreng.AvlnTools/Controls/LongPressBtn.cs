@@ -5,7 +5,7 @@ using Avalonia.Input;
 using Avalonia.Threading;
 using Tsinswreng.CsCore;
 
-namespace Tsinswreng.Avalonia.Controls;
+namespace Tsinswreng.AvlnTools.Controls;
 using IF;
 //TODO 區分ʃᶤ長按ʹ鍵 左鍵抑右鍵
 public class LongPressBtn

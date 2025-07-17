@@ -5,7 +5,7 @@ using Avalonia.Controls;
 using Avalonia.Input;
 
 
-namespace Tsinswreng.Avalonia.Controls;
+namespace Tsinswreng.AvlnTools.Controls;
 using IF;
 using SwipeEventArgs = IF.ISwipeBtn.SwipeEventArgs;
 using SwipeDirection = IF.ISwipeBtn.SwipeDirection;

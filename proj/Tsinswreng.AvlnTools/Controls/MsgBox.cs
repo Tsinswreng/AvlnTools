@@ -2,9 +2,9 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Media;
 using Avalonia.Styling;
-using Tsinswreng.Avalonia.Tools;
+using Tsinswreng.AvlnTools.Tools;
 
-namespace Tsinswreng.Avalonia.Controls;
+namespace Tsinswreng.AvlnTools.Controls;
 
 public class MsgBox : UserControl{
 	// public Ctx? Ctx{

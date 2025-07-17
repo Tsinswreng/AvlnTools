@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Avalonia.Controls;
 using Control = Avalonia.Controls.ContentControl;
-namespace Tsinswreng.Avalonia.Navigation;
+namespace Tsinswreng.AvlnTools.Navigation;
 
 public class ViewNavigator
 	//:UserControl

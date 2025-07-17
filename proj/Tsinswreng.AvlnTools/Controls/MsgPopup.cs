@@ -2,7 +2,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 
 
-namespace Tsinswreng.Avalonia.Controls;
+namespace Tsinswreng.AvlnTools.Controls;
 
 
 public class MsgPopup : UserControl{
