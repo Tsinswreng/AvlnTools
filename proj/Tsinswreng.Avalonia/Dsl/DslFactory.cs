@@ -2,7 +2,7 @@ using Avalonia.Controls;
 
 namespace Tsinswreng.Avalonia.Dsl;
 
-public class AvlnDslFactory{
+public class DslFactory{
 	public static Button Button(){return new Button();}
 	public static Border Border(){return new Border();}
 	public static ScrollViewer ScrollViewer(){return new ScrollViewer();}

@@ -5,9 +5,9 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Styling;
 using Tsinswreng.Avalonia.Tools;
 
-namespace Tsinswreng.Avalonia.Sugar;
+namespace Tsinswreng.Avalonia.Dsl;
 
-public static class SugarStyle{
+public static class DslStyle{
 
 	public static Style MkStyForAnyControl(){
 		var Ans = new Style(x=>
@@ -42,8 +42,8 @@ public static class SugarStyle{
 		this Style z
 	){
 		z.Set(
-			ContentControl.CornerRadiusProperty
-			,new CornerRadius(0)
+			TemplatedControl.CornerRadiusProperty
+			, new CornerRadius(0)
 		);
 		return z;
 	}
@@ -62,13 +62,13 @@ public static class SugarStyle{
 		this Style z
 	){
 		z.Set(
-			TemplatedControl.MarginProperty
-			,new Thickness(0)
+			global::Avalonia.Layout.Layoutable.MarginProperty
+			, new Thickness(0)
 		);
 		return z;
 	}
 
-	
+
 
 
 }

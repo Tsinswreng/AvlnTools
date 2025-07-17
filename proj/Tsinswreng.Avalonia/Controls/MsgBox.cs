@@ -2,7 +2,6 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Media;
 using Avalonia.Styling;
-using Tsinswreng.Avalonia.Sugar;
 using Tsinswreng.Avalonia.Tools;
 
 namespace Tsinswreng.Avalonia.Controls;
