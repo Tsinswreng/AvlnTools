@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using Tsinswreng.CsCore;
 
 namespace Tsinswreng.AvlnTools.Tools;
-public partial class IndexGrid
+public partial class AutoGrid
 	:ICollection<Control>
 {
 
@@ -13,7 +13,7 @@ public partial class IndexGrid
 	public i32 Index = 0;
 	public bool IsRow = true;
 
-	public IndexGrid(bool IsRow = true){
+	public AutoGrid(bool IsRow = true){
 		this.IsRow = IsRow;
 	}
 

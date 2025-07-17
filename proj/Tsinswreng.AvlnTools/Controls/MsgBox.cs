@@ -23,7 +23,7 @@ public class MsgBox : UserControl{
 	}
 	public Cls_ Cls{get;set;} = new Cls_();
 
-	public IndexGrid Root {get;protected set;} = new(IsRow: true);
+	public AutoGrid Root {get;protected set;} = new(IsRow: true);
 
 	// public Func<nil> OnLeftBtn = ()=>Nil;
 	// public Func<nil> OnRightBtn = ()=>Nil;
@@ -58,7 +58,7 @@ public class MsgBox : UserControl{
 		}
 		{{
 
-			var TitleRow = new IndexGrid(IsRow: false);
+			var TitleRow = new AutoGrid(IsRow: false);
 			_BdrTitle.Child = TitleRow.Grid;
 			Root.Add(_BdrTitle);
 			{var o = TitleRow.Grid;
