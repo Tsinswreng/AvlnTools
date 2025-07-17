@@ -1,8 +1,13 @@
 using Avalonia.Controls;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using Tsinswreng.CsCore;
 
 namespace Tsinswreng.Avalonia.Tools;
-public partial class IndexGrid{
+public partial class IndexGrid
+	:ICollection<Control>
+{
 
 	public Grid Grid = new Grid();
 	public i32 Index = 0;
@@ -12,10 +17,20 @@ public partial class IndexGrid{
 		this.IsRow = IsRow;
 	}
 
-	public nil Add(Control? control= default){
+	public int Count => throw new NotImplementedException();
+
+	public bool IsReadOnly => throw new NotImplementedException();
+
+	protected ICollection<Control> Inner{get{
+		return Grid.Children;
+	}}
+
+	[Impl]
+	public void Add(Control control= default!){
 		if(control == null){
 			Index++;
-			return NIL;
+			//return NIL;
+			return;
 		}
 		Grid.Children.Add(control);
 		if(IsRow){
@@ -23,7 +38,37 @@ public partial class IndexGrid{
 		}else{
 			Grid.SetColumn(control, Index++);
 		}
-		return NIL;
+		//return NIL;
+		return;
 	}
 
+	[Impl]
+	public void Clear() {
+		Inner.Clear();
+	}
+
+	[Impl]
+	public bool Contains(Control item) {
+		return Inner.Contains(item);
+	}
+
+	[Impl]
+	public void CopyTo(Control[] array, int arrayIndex) {
+		Inner.CopyTo(array, arrayIndex);
+	}
+
+	[Impl]
+	public IEnumerator<Control> GetEnumerator() {
+		return Inner.GetEnumerator();
+	}
+
+	[Impl]
+	public bool Remove(Control item) {
+		return Inner.Remove(item);
+	}
+
+	[Impl]
+	IEnumerator IEnumerable.GetEnumerator() {
+		return GetEnumerator();
+	}
 }

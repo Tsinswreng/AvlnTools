@@ -3,6 +3,7 @@ using Avalime.controls;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Threading;
+using Tsinswreng.CsCore;
 
 namespace Tsinswreng.Avalonia.Controls;
 using IF;
@@ -50,7 +51,7 @@ public class LongPressBtn
 /// Call Init() after construct
 /// </summary>
 public class LongPressBtnFn
-	:Tsinswreng.CsTools.IF.IInitable
+	:I_Init
 {
 	protected DispatcherTimer _PressTimer;
 	protected bool _IsLongPressTriggered;
