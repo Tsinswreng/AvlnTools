@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Tsinswreng.AvlnTools.Tools;
 
-public interface IDict_Key<K,V>
+public  partial interface IDict_Key<K,V>
 	where K : notnull
 {
 	public IDictionary<K, V> Dict { get; set; }

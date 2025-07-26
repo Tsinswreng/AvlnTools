@@ -2,7 +2,7 @@ using System;
 
 namespace Tsinswreng.AvlnTools.Controls.IF;
 
-public interface ISwipeBtn{
+public  partial interface ISwipeBtn{
 	public event EventHandler<SwipeEventArgs> OnSwipe;
 	public f64 SwipeThreshold{get;set;}
 
