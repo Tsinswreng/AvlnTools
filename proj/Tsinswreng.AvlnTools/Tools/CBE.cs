@@ -19,7 +19,7 @@ namespace Tsinswreng.AvlnTools.Tools;
 //new CBE(CBE.pth<Ctx, object?>(x=>x.$1))
 //
 /// </summary>
-public class CBE : CompiledBindingExtension{
+public  partial class CBE : CompiledBindingExtension{
 	public CBE(CompiledBindingPath path):base(path){}
 
 	public static CompiledBindingPath Pth<T>(

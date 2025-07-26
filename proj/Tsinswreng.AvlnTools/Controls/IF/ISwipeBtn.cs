@@ -19,7 +19,7 @@ public enum SwipeDirection {
 
 
 #region SwipeEventArgs
-public class SwipeEventArgs : EventArgs {
+public  partial class SwipeEventArgs : EventArgs {
 	public SwipeDirection Direction { get; }
 
 	public SwipeEventArgs(SwipeDirection direction) {

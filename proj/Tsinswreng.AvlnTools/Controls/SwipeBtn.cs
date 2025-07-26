@@ -10,7 +10,7 @@ using IF;
 using SwipeEventArgs = IF.ISwipeBtn.SwipeEventArgs;
 using SwipeDirection = IF.ISwipeBtn.SwipeDirection;
 
-public class SwipeBtn
+public  partial class SwipeBtn
 	:OpenButton
 	,ISwipeBtn
 {
@@ -42,7 +42,7 @@ public class SwipeBtn
 
 
 #region Fn
-public class SwipeBtnFn{
+public  partial class SwipeBtnFn{
 	public Point StartPoint{get;set;}
 	public bool IsSwiping{get;set;}
 	public f64 SwipeThreshold{get;set;}=50.0;
@@ -105,7 +105,7 @@ public class SwipeBtnFn{
 	}
 }
 
-// public class SwipeEventArgs : EventArgs {
+// public  partial class SwipeEventArgs : EventArgs {
 // 	public SwipeDirection Direction { get; }
 
 // 	public SwipeEventArgs(SwipeDirection direction) {

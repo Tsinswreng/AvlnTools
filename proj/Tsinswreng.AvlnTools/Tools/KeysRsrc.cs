@@ -1,6 +1,6 @@
 namespace Tsinswreng.AvlnTools.Tools;
 
-public class KeysRsrc{
+public  partial class KeysRsrc{
 protected static KeysRsrc? _Inst = null;
 public static KeysRsrc Inst => _Inst??= new KeysRsrc();
 

@@ -9,7 +9,7 @@ using Avalonia;
 using Avalonia.Controls.Primitives;
 
 namespace Avalime.controls;
-public class OpenButton:Button{
+public  partial class OpenButton:Button{
 
 	public OpenButton():base(){
 

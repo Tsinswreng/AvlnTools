@@ -2,11 +2,64 @@ using System;
 using System.Collections.Generic;
 using Avalonia.Collections;
 using Avalonia.Controls;
+using Avalonia.Styling;
 
 namespace Tsinswreng.AvlnTools.Dsl;
 using Controls = global::Avalonia.Controls.Controls;
+using NonGenericList = System.Collections.IList;
 public static class DslExtn{
-	//[Obsolete("類型推斷時優先根據前ʹ參數、則TItem恆潙Control")]
+
+	public static NonGenericList AddInit<TItem>(
+		this NonGenericList z
+		,TItem Child
+		,Action<TItem>? FnInit = null
+	){
+		z.Add(Child!);
+		FnInit?.Invoke(Child);
+		return z;
+	}
+
+	public static Style Attach(
+		this Style z
+		,Styles Styles
+		,Action<Style>? FnInit = null
+	){
+		FnInit?.Invoke(z);
+		Styles.Add(z);
+		return z;
+	}
+
+	public static IStyle Attach(
+		this IStyle z
+		,Styles Styles
+		,Action<IStyle>? FnInit = null
+	){
+		FnInit?.Invoke(z);
+		Styles.Add(z);
+		return z;
+	}
+
+
+	public static ICollection<IStyle> AddInit<TItem>(
+		this ICollection<IStyle> z
+		,TItem Child
+		,Action<TItem>? FnInit = null
+	)where TItem:IStyle{
+		z.Add(Child!);
+		FnInit?.Invoke(Child);
+		return z;
+	}
+
+	public static ICollection<TItem> AddInitT<TItem>(
+		this ICollection<TItem> z
+		,TItem Child
+		,Action<TItem>? FnInit = null
+	){
+		z.Add(Child!);
+		FnInit?.Invoke(Child);
+		return z;
+	}
+
 	public static ICollection<Control> AddInit<TItem>(
 		this ICollection<Control> z
 		,TItem Child
@@ -25,6 +78,16 @@ public static class DslExtn{
 		Controls.AddInit(z,FnInit);
 		return z;
 	}
+
+	public static TControl Attach<TControl>(
+		this TControl z
+		,Panel Panel
+		,Action<TControl>? FnInit = null
+	)where TControl:Control{
+		Panel.AddInit(z,FnInit);
+		return z;
+	}
+
 
 	public static Controls AddInit<TChild>(
 		this Controls z

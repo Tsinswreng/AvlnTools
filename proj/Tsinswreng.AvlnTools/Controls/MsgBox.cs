@@ -6,7 +6,7 @@ using Tsinswreng.AvlnTools.Tools;
 
 namespace Tsinswreng.AvlnTools.Controls;
 
-public class MsgBox : UserControl{
+public  partial class MsgBox : UserControl{
 	// public Ctx? Ctx{
 	// 	get{return DataContext as Ctx;}
 	// 	set{DataContext = value;}
@@ -18,7 +18,7 @@ public class MsgBox : UserControl{
 		_Style();
 	}
 
-	public class Cls_{
+	public  partial class Cls_{
 
 	}
 	public Cls_ Cls{get;set;} = new Cls_();

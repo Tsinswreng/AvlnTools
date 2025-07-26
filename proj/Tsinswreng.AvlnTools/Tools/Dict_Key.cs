@@ -10,7 +10,7 @@ public interface IDict_Key<K,V>
 }
 
 
-public class Dict_Key<K,V>
+public  partial class Dict_Key<K,V>
 	where K : notnull
 {
 	public Dict_Key(IDictionary<K, V> Dict, K Key){

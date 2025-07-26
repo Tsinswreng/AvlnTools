@@ -6,7 +6,7 @@ using Tsinswreng.AvlnTools.Tools;
 
 namespace Tsinswreng.AvlnTools.Converters;
 
-public class ConvDictEntry<K, V> : IValueConverter
+public  partial class ConvDictEntry<K, V> : IValueConverter
 	where K : notnull
 {
 

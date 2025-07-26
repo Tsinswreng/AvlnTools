@@ -2,18 +2,33 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Avalonia.Controls;
-using Control = Avalonia.Controls.ContentControl;
 namespace Tsinswreng.AvlnTools.Navigation;
-
-public class ViewNavigator
+public  partial class ViewNavi
 	//:UserControl
-	:IViewNavigator
+	:IViewNavi
 {
-
-	public ViewNavigator(Control current){
-		Current = current;
-		Stack.Add(current);
+	public ViewNavi(){
+		Container = new ContentControl();
 	}
+
+	public ViewNavi(ContentControl Container){
+		this.Container = Container;
+	}
+
+	public nil InitCurrent(Control current){
+		if(Container != null){
+			return NIL;
+		}
+		Add(current);
+		return NIL;
+	}
+
+	public void Add(Control ctrl){
+		Container.Content = ctrl;//勿用訪問器 會導致循環參照
+		Stack.Add(ctrl);
+	}
+
+
 	public ObservableCollection<Control?> Stack{get;set;} = new(){};
 	public Control? Peek{
 		get{
@@ -23,14 +38,10 @@ public class ViewNavigator
 			Stack[Stack.Count-1] = value;
 		}
 	}
-	public Control Current{get;set;}
 
-	// public Control? Root{
-	// 	get{return Stack[0];}
-	// }
+	public ContentControl Container{get;}
 
 	public bool Back(){
-
 		if(Stack.Count <= 1){
 			return false;
 		}
@@ -38,16 +49,25 @@ public class ViewNavigator
 		var last = Stack[Stack.Count-1];
 		Stack.RemoveAt(Stack.Count-1);
 		var target = Stack[Stack.Count -1];
-		Current.Content = target;
+		if(Container != null){
+			Container.Content = target; //target與Current潙同一對象則棧溢出
+		}
 		return true;
 
 	}
 
 	public void GoTo(Control view){
 		Stack.Add(view);
-		Current.Content = view;
-		if(view is I_ViewNavigator navigatorView){
-			navigatorView.ViewNavigator = this;
+		if(Container != null){//TODO
+			Container.Content = view;
+		}
+		// if(view is I_ViewNavi navigatorView){
+		// 	navigatorView.ViewNavigator = this;
+		// }
+		if(view.DataContext is I_ViewNavi ViewNavi
+			&& ViewNavi.ViewNavi == null
+		){//TODO
+			ViewNavi.ViewNavi = this;
 		}
 	}
 }
@@ -57,21 +77,21 @@ class StackView
 {
 	public StackView(){
 		var view = new Welcome();
-		var navigator = new ViewNavigator(this);
+		var navigator = new ViewNavi(this);
 		navigator.GoTo(view);
 	}
 }
 
 class Welcome
 	:UserControl
-	,I_ViewNavigator
+	,I_ViewNavi
 {
-	public IViewNavigator? ViewNavigator{get;set;}
+	public IViewNavi? ViewNavi{get;set;}
 	public Welcome(){
 		var btn = new Button();
 		Content = btn;
 		btn.Click +=(s,e)=>{
-			ViewNavigator?.GoTo(
+			ViewNavi?.GoTo(
 				new Login()
 			);
 		};
@@ -80,15 +100,15 @@ class Welcome
 
 class Login
 	:UserControl
-	,I_ViewNavigator
+	,I_ViewNavi
 {
-	public IViewNavigator? ViewNavigator{get;set;}
+	public IViewNavi? ViewNavi{get;set;}
 	public Login(){
 		var backBtn = new Button();
 		Content = backBtn;
 
 		backBtn.Click += (s,e)=>{
-			ViewNavigator?.Back();
+			ViewNavi?.Back();
 		};
 	}
 }

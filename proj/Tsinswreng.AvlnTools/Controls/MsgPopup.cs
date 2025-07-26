@@ -1,11 +1,12 @@
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
+using Tsinswreng.AvlnTools.Dsl;
 
 
 namespace Tsinswreng.AvlnTools.Controls;
 
 
-public class MsgPopup : UserControl{
+public  partial class MsgPopup : UserControl{
 
 	public MsgBox _MsgBox = new();
 
@@ -53,10 +54,8 @@ public class MsgPopup : UserControl{
 
 	protected nil Render(){
 		var Top = TopLevel.GetTopLevel(this);
-
 		_Popup = new Popup{};
-		Content = _Popup;
-		{var o= _Popup;
+		this.ContentInit(_Popup, o=>{
 			o.Child = _MsgBox;
 			//o.HorizontalOffset = TopLevel.GetTopLevel
 			o.PlacementTarget = Top;
@@ -65,7 +64,7 @@ public class MsgPopup : UserControl{
 			o.IsOpen = true;
 			o.IsHitTestVisible = true;
 			//o.StaysOpen = false // 点击其它地方自动关闭
-		}
+		});
 		return NIL;
 	}
 }

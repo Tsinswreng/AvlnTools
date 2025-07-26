@@ -1,5 +1,5 @@
 namespace Tsinswreng.AvlnTools.Tools;
-public class PsdCls{
+public  partial class PsdCls{
 	protected static PsdCls? _inst;
 	public static PsdCls Inst => _inst??= new PsdCls();
 	public str pointerover=":"+nameof(pointerover);

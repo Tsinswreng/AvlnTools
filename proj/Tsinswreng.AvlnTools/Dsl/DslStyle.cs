@@ -2,12 +2,13 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
+using Avalonia.Media;
 using Avalonia.Styling;
 using Tsinswreng.AvlnTools.Tools;
 
 namespace Tsinswreng.AvlnTools.Dsl;
 
-public static class DslStyle{
+public static class MkrStyle{
 
 	public static Style MkStyForAnyControl(){
 		var Ans = new Style(x=>
@@ -68,7 +69,12 @@ public static class DslStyle{
 		return z;
 	}
 
-
+	public static Style BgTrnsp(
+		this Style z
+	){
+		z.Set(TemplatedControl.BackgroundProperty, Brushes.Transparent);
+		return z;
+	}
 
 
 }

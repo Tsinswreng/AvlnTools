@@ -10,7 +10,7 @@ using IF;
 using SwipeEventArgs = IF.ISwipeBtn.SwipeEventArgs;
 using SwipeDirection = IF.ISwipeBtn.SwipeDirection;
 
-public class SwipeLongPressBtn
+public  partial class SwipeLongPressBtn
 	:OpenButton
 	,ISwipeBtn
 	,ILongPressBtn

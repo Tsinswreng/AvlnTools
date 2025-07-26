@@ -8,7 +8,7 @@ using Tsinswreng.CsCore;
 namespace Tsinswreng.AvlnTools.Controls;
 using IF;
 //TODO 區分ʃᶤ長按ʹ鍵 左鍵抑右鍵
-public class LongPressBtn
+public  partial class LongPressBtn
 	:OpenButton
 	,ILongPressBtn
 {
@@ -50,7 +50,7 @@ public class LongPressBtn
 /// <summary>
 /// Call Init() after construct
 /// </summary>
-public class LongPressBtnFn
+public  partial class LongPressBtnFn
 	:I_Init
 {
 	protected DispatcherTimer _PressTimer;

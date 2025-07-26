@@ -5,7 +5,7 @@ using Avalonia.Data.Converters;
 
 namespace Tsinswreng.AvlnTools.Tools;
 
-public class ParamFnConvtr<TIn, TRet>
+public  partial class ParamFnConvtr<TIn, TRet>
 	:IValueConverter
 {
 	public Func<TIn, object?, TRet>? FnConv{get;set;}
@@ -63,7 +63,7 @@ public class ParamFnConvtr<TIn, TRet>
 
 
 
-public class SimpleFnConvtr<TIn, TRet>
+public  partial class SimpleFnConvtr<TIn, TRet>
 	:IValueConverter
 {
 	public Func<TIn, TRet>? FnConv{get;set;}
