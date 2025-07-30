@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Avalonia.Collections;
 using Avalonia.Controls;
+using Avalonia.Layout;
 using Avalonia.Styling;
 
 namespace Tsinswreng.AvlnTools.Dsl;
@@ -127,6 +128,28 @@ public static class DslExtn{
 		FnInit?.Invoke(ControlAsContent);
 		return ControlAsContent;
 	}
+
+	public static TSelf VAlign<TSelf>(
+		this TSelf z
+		,VerticalAlignment v
+	)
+		where TSelf:Layoutable
+	{
+		z.VerticalAlignment = v;
+		return z;
+	}
+
+	public static TSelf HAlign<TSelf>(
+		this TSelf z
+		,HorizontalAlignment v
+	)
+		where TSelf:Layoutable
+	{
+		z.HorizontalAlignment = v;
+		return z;
+	}
+
+
 
 }
 

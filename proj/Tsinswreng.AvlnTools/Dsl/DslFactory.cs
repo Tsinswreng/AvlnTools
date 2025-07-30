@@ -1,4 +1,8 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using Avalonia.Controls;
+using Tsinswreng.CsTools;
 
 namespace Tsinswreng.AvlnTools.Dsl;
 
@@ -22,5 +26,15 @@ public  partial class DslFactory{
 	}
 	public static ColDef ColDef(double value, GridUnitType type){
 		return new ColDef(value, type);
+	}
+
+	public static IList<T> Repeat<T>(T Value, u64 Count){
+		return ExtnIList.Repeat(Value, Count);
+	}
+	public static IList<T> Repeat<T>(
+		Func<T> ValueMkr
+		,u64 Count
+	){
+		return ExtnIList.Repeat(ValueMkr, Count);
 	}
 }
