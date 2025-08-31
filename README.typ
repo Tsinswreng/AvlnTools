@@ -1,4 +1,10 @@
 //pandoc README.typ -o README.md
+
+/*
+ProjectReference by
+- CsNgaq
+- Magnitree
+ */
 = AvlnTools
 Avalonia Tools
 
