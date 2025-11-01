@@ -1,15 +1,11 @@
+namespace Tsinswreng.AvlnTools.Controls;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Tsinswreng.AvlnTools.Dsl;
 
 
-namespace Tsinswreng.AvlnTools.Controls;
-
-
-public  partial class MsgPopup : UserControl{
-
+public partial class MsgPopup : UserControl{
 	public MsgBox _MsgBox = new();
-
 	public Border _Border{get{
 		return _MsgBox._Border;
 	}}

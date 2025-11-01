@@ -1,12 +1,14 @@
-using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Media;
-using Avalonia.Styling;
-using Tsinswreng.AvlnTools.Tools;
-
 namespace Tsinswreng.AvlnTools.Controls;
 
-public  partial class MsgBox : UserControl{
+
+using Avalonia.Controls;
+using Avalonia.Media;
+using Tsinswreng.AvlnTools.Dsl;
+using Tsinswreng.AvlnTools.Tools;
+
+
+
+public partial class MsgBox : UserControl{
 	// public Ctx? Ctx{
 	// 	get{return DataContext as Ctx;}
 	// 	set{DataContext = value;}
@@ -18,7 +20,7 @@ public  partial class MsgBox : UserControl{
 		_Style();
 	}
 
-	public  partial class Cls_{
+	public partial class Cls_{
 
 	}
 	public Cls_ Cls{get;set;} = new Cls_();
@@ -31,6 +33,9 @@ public  partial class MsgBox : UserControl{
 	public Border _Border{get;protected set;} = new ();
 	public Border _BdrTitle{get; protected set;} = new ();
 	public ContentControl _Title{get;} = new();
+	/// <summary>
+	/// 不蔿此設高度則恐 ScrollViewer不效
+	/// </summary>
 	public Border _BdrBody{get; protected set;} = new ();
 	public ContentControl _Body{get;} = new();
 	public SwipeLongPressBtn _CloseBtn{get; protected set;}
@@ -46,8 +51,11 @@ public  partial class MsgBox : UserControl{
 
 	protected nil Render(){
 		//Content = Root.Grid;
-		Content = _Border;
-		_Border.Child = Root.Grid;
+		// Content = _Border;
+		// _Border.Child = Root.Grid;
+		this.ContentInit(_Border, o=>{
+			o.Child = Root.Grid;
+		});
 		{var o = Root.Grid;
 
 			o.RowDefinitions.AddRange([
@@ -57,7 +65,6 @@ public  partial class MsgBox : UserControl{
 			]);
 		}
 		{{
-
 			var TitleRow = new AutoGrid(IsRow: false);
 			_BdrTitle.Child = TitleRow.Grid;
 			Root.Add(_BdrTitle);
@@ -68,36 +75,27 @@ public  partial class MsgBox : UserControl{
 				]);
 			}
 			{{
-				TitleRow.Add(_Title);
-				{var o = _Title;
+				TitleRow.AddInit(_Title, o=>{
 					o.VerticalAlignment = VertAlign.Center;
-				}
+				});
 
 				_CloseBtn = new SwipeLongPressBtn{};
-				TitleRow.Add(_CloseBtn);
-				{var o = _CloseBtn;
+				TitleRow.AddInit(_CloseBtn, o=>{
 					o.Content = "×";
 					o.HorizontalAlignment = HoriAlign.Right;
 					o.Background = Brushes.Red;
-				}
+				});
 			}}//~TitleLine
 
 
-			Root.Add(_BdrBody);
-			{{
+			Root.AddInit(_BdrBody, o=>{
 				var Scr = new ScrollViewer();
-				_BdrBody.Child = Scr;
-				{var o = Scr;
-
-				}
+				o.Child = Scr;
 				{{
 					Scr.Content = _Body;
-					{var o = _Body;
-					}
 				}}//~Scr
-			}}
-
-			Root.Add(_BdrBottomView);
+			});
+			Root.AddInit(_BdrBottomView);
 			_BdrBottomView.Child = _BottomView;
 		}}//~Root
 		return NIL;
