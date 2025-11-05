@@ -1,9 +1,9 @@
-using System.Collections.Generic;
+namespace Tsinswreng.AvlnTools.Navigation;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Avalonia.Controls;
-namespace Tsinswreng.AvlnTools.Navigation;
-public  partial class ViewNavi
+
+public partial class ViewNavi
 	//:UserControl
 	:IViewNavi
 {
@@ -36,6 +36,9 @@ public  partial class ViewNavi
 		}
 		set{
 			Stack[Stack.Count-1] = value;
+			if(Container != null){
+				Container.Content = value;
+			}
 		}
 	}
 
@@ -71,6 +74,8 @@ public  partial class ViewNavi
 		}
 	}
 }
+
+#if false
 
 class StackView
 	:UserControl
@@ -112,3 +117,5 @@ class Login
 		};
 	}
 }
+
+#endif
