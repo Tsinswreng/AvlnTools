@@ -11,13 +11,9 @@ namespace Tsinswreng.AvlnTools.Tools;
 //于c#中用編譯期綁定
 // usage:
 // using Ctx = MyDataContext;
-//,new Binding(nameof(ctx.hasValue)) ->
-//,new CBE(CBE.pth<Ctx, bool>(x=>x.hasValue))
+//,new Binding(nameof(ctx.hasValue)) 改成
+//,CBE.Mk<Ctx>(x=>x.hasValue)
 //RelativeBinging直用new Binging即可 不必用此
-//正則替換:
-//new Binding(nameof(ctx\.(.*?)))
-//new CBE(CBE.pth<Ctx, object?>(x=>x.$1))
-//
 /// </summary>
 public  partial class CBE : CompiledBindingExtension{
 	public CBE(CompiledBindingPath path):base(path){}

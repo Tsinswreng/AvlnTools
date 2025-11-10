@@ -4,11 +4,11 @@ using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Threading;
 using Tsinswreng.CsCore;
-
+//TOFIX 觸屏時邊移動邊長按(如scrollView中上下滑 亦祘)
 namespace Tsinswreng.AvlnTools.Controls;
 using IF;
 //TODO 區分ʃᶤ長按ʹ鍵 左鍵抑右鍵
-public  partial class LongPressBtn
+public partial class LongPressBtn
 	:OpenButton
 	,ILongPressBtn
 {

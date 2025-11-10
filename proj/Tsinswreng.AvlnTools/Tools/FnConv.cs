@@ -87,7 +87,7 @@ public  partial class SimpleFnConvtr<TIn, TRet>
 			}
 			return FnConv.Invoke(val);
 		}
-		throw new ArgumentException();
+		return null;
 	}
 
 	public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture) {
@@ -97,6 +97,6 @@ public  partial class SimpleFnConvtr<TIn, TRet>
 			}
 			return FnBack.Invoke(val);
 		}
-		throw new ArgumentException();
+		return null;
 	}
 }
