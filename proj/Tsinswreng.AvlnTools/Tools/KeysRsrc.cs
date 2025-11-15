@@ -1,8 +1,13 @@
 namespace Tsinswreng.AvlnTools.Tools;
 
-public  partial class KeysRsrc{
-protected static KeysRsrc? _Inst = null;
-public static KeysRsrc Inst => _Inst??= new KeysRsrc();
+public partial class KeysRsrcOld{
+protected static KeysRsrcOld? _Inst = null;
+public static KeysRsrcOld Inst => _Inst??= new KeysRsrcOld();
 
 	public str ControlContentThemeFontSize = nameof(ControlContentThemeFontSize);
+}
+
+
+public partial class KeysRsrc{
+	public static str ControlContentThemeFontSize = nameof(ControlContentThemeFontSize);
 }
