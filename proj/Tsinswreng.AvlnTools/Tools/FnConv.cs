@@ -23,27 +23,11 @@ public  partial class ParamFnConvtr<TIn, TRet>
 	}
 
 	public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture) {
-		// if(parameter is str s && s == "Debug"){
-		// 	System.Console.WriteLine();//t
-		// 	System.Console.WriteLine(typeof(TIn));// -> System.Nullable`1[System.Double]
-		// 	System.Console.WriteLine((null is double?));//->False
-		// 	double? d = null;
-		// 	System.Console.WriteLine(d is double?); // -> False
-		// }
 		if(FnConv == null){
 			return AvaloniaProperty.UnsetValue;
 		}
-
 		//直強轉 勿用is匹配、緣null is xxx旹恆返false、縱xxx可潙null
 		return FnConv.Invoke((TIn)value!, parameter);
-
-		// if (value is TIn val) {
-		// 	if(FnConv == null){
-		// 		return AvaloniaProperty.UnsetValue;
-		// 	}
-		// 	return FnConv.Invoke(val, parameter);
-		// }
-		// throw new ArgumentException();
 	}
 
 	public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture) {
@@ -51,19 +35,12 @@ public  partial class ParamFnConvtr<TIn, TRet>
 			return AvaloniaProperty.UnsetValue;
 		}
 		return FnBack.Invoke((TRet)value!, parameter);
-		// if (value is TRet val) {
-		// 	if(FnBack == null){
-		// 		return AvaloniaProperty.UnsetValue;
-		// 	}
-		// 	return FnBack.Invoke(val, parameter);
-		// }
-		// throw new ArgumentException();
 	}
 }
 
 
 
-public  partial class SimpleFnConvtr<TIn, TRet>
+public partial class SimpleFnConvtr<TIn, TRet>
 	:IValueConverter
 {
 	public Func<TIn, TRet>? FnConv{get;set;}
@@ -81,22 +58,17 @@ public  partial class SimpleFnConvtr<TIn, TRet>
 	}
 
 	public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture) {
-		if (value is TIn val) {
-			if(FnConv == null){
-				return AvaloniaProperty.UnsetValue;
-			}
-			return FnConv.Invoke(val);
+		if(FnConv == null){
+			return AvaloniaProperty.UnsetValue;
 		}
-		return null;
+		//直強轉 勿用is匹配、緣null is xxx旹恆返false、縱xxx可潙null
+		return FnConv.Invoke((TIn)value!);
 	}
 
 	public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture) {
-		if (value is TRet val) {
-			if(FnBack == null){
-				return AvaloniaProperty.UnsetValue;
-			}
-			return FnBack.Invoke(val);
+		if(FnBack == null){
+			return AvaloniaProperty.UnsetValue;
 		}
-		return null;
+		return FnBack.Invoke((TRet)value!);
 	}
 }

@@ -6,6 +6,10 @@ using C = Avalonia.Controls.CheckBox;
 
 
 public static partial class ExtnProp{
+	extension(C z){
+		public StyledProperty<bool?> PropIsChecked=>C.IsCheckedProperty;
+		public StyledProperty<bool> PropIsCancel=>C.IsCancelProperty;
+	}
 	public static StyledProperty<bool?> PropIsChecked_(
 		this C z
 	){
