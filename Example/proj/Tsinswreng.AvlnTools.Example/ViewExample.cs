@@ -1,35 +1,12 @@
-//pandoc README.typ -o README.md
+#if false //todo undone
+namespace Tsinswreng.AvlnTools.Example;
 
-/*
-ProjectReference by
-- CsNgaq
-- Magnitree
- */
-= AvlnTools
-Avalonia Tools
-
-This is a collection of tools for Avalonia UI framework.
-Especially for Avalonia in pure C\# (Without XAML)
-
-
-- Fluent API
-- Simplified Compiletime Binding
-- Functional Converter
-- AOT-compatible
-- Controls(or Control Tools):
-	- AutoGrid
-	- Buttons that support Long press and swipe
-
-
-
-= What's it like?
-
-```cs
+using Avalonia.Controls;
 using Tsinswreng.AvlnTools.Controls;
 using Tsinswreng.AvlnTools.Dsl;
 using Tsinswreng.AvlnTools.Tools;
 using static Tsinswreng.AvlnTools.Dsl.DslFactory;
-using Ctx = MyViewModel;
+using Ctx = VmExample;
 
 public partial class MyView:UserControl{
 	public MyView(){
@@ -52,12 +29,12 @@ public partial class MyView:UserControl{
 		{{
 			//Add Children into AutoGrid and initialize them with lambda
 			// Border() is also a control factory function, so you don't need to use "new" keyword
-			Root.AddInit(Border(), o=>{
+			Root.AddInit(new Border(), o=>{
 				o.Background = new SolidColorBrush(Color.FromArgb((byte)(255 * 0.35), 0, 0, 0));
 				o.ZIndex = -1;
 			})
 			.AddInit(_Menu()) // chaining call
-			.AddInit(ScrollViewer(), Scr=>{
+			.AddInit(new ScrollViewer(), Scr=>{
 				Scr.ContentInit(_ListWordCard(), o=>{
 					o.Bind(
 						ItemsControl.ItemsSourceProperty
@@ -79,5 +56,5 @@ public partial class MyView:UserControl{
 		return;
 	}
 }
-```
 
+#endif
