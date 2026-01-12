@@ -19,7 +19,7 @@ public partial class ParamFnConvtr<TIn, TRet>
 {
 	public Func<TIn, object?, TRet>? FnConv{get;set;}
 	public Func<TRet, object?, TIn>? FnBack{get;set;}
-	public Func<Exception, obj?>? OnErr{get;set;}
+	public Func<Exception, obj?>? OnErr{get;set;} = e => { Console.Error.WriteLine(e); return null; };
 		public ParamFnConvtr(Func<TIn, object?, TRet> FnConv){
 			this.FnConv = FnConv;
 		}
@@ -27,11 +27,9 @@ public partial class ParamFnConvtr<TIn, TRet>
 	public ParamFnConvtr(
 		Func<TIn, object?, TRet> FnConv
 		,Func<TRet, object?, TIn>? FnBack = null
-		,Func<Exception?, obj?>? OnErr = null
 	){
 		this.FnConv = FnConv;
 		this.FnBack = FnBack;
-		this.OnErr = OnErr;
 	}
 
 	public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture) {
@@ -66,6 +64,7 @@ public partial class ParamFnConvtr<TIn, TRet>
 
 
 
+
 /// <summary>
 ///
 /// </summary>
@@ -76,7 +75,7 @@ public partial class SimpleFnConvtr<TIn, TRet>
 {
 	public Func<TIn, TRet>? FnConv{get;set;}
 	public Func<TRet, TIn>? FnBack{get;set;}
-	public Func<Exception, obj?>? OnErr{get;set;}
+	public Func<Exception, obj?>? OnErr{get;set;} = e => { Console.Error.WriteLine(e); return null; };
 		public SimpleFnConvtr(Func<TIn, TRet> FnConv){
 			this.FnConv = FnConv;
 		}
@@ -84,7 +83,6 @@ public partial class SimpleFnConvtr<TIn, TRet>
 	public SimpleFnConvtr(
 		Func<TIn, TRet> FnConv
 		,Func<TRet, TIn>? FnBack = null
-		,Func<Exception, obj?>? OnErr = null
 	){
 		this.FnConv = FnConv;
 		this.FnBack = FnBack;
