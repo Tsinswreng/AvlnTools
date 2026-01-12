@@ -100,5 +100,4 @@ public  partial class CBE : CompiledBindingExtension{
 
 		builder.Property(clrProp, PropertyInfoAccessorFactory.CreateInpcPropertyAccessor);
 	}
-
 }

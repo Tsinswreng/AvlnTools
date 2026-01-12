@@ -1,10 +1,11 @@
+namespace Tsinswreng.AvlnTools.Tools;
 using Avalonia.Controls;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using Tsinswreng.CsCore;
 
-namespace Tsinswreng.AvlnTools.Tools;
+
 public partial class AutoGrid
 	:ICollection<Control>
 {

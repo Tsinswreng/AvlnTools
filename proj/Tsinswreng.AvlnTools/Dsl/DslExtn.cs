@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using Avalonia;
 using Avalonia.Collections;
 using Avalonia.Controls;
+using Avalonia.Data;
 using Avalonia.Layout;
 using Avalonia.Styling;
 
@@ -9,7 +11,6 @@ namespace Tsinswreng.AvlnTools.Dsl;
 using Controls = global::Avalonia.Controls.Controls;
 using NonGenericList = System.Collections.IList;
 public static class DslExtn{
-
 	public static NonGenericList AddInit<TItem>(
 		this NonGenericList z
 		,TItem Child
@@ -21,6 +22,16 @@ public static class DslExtn{
 	}
 
 	public static Style Attach(
+		this Style z
+		,Styles Styles
+		,Action<Style>? FnInit = null
+	){
+		FnInit?.Invoke(z);
+		Styles.Add(z);
+		return z;
+	}
+
+	public static Style AddTo(
 		this Style z
 		,Styles Styles
 		,Action<Style>? FnInit = null
@@ -149,7 +160,19 @@ public static class DslExtn{
 		return z;
 	}
 
+	extension<TCtrl>(TCtrl z)
+		where TCtrl:Control
+	{
+		public Action<TCtrl> Init{
+			set{value(z);}
+		}
 
+		public (AvaloniaProperty property, IBinding binding) Bind{
+			set{
+				z.Bind(value.property,value.binding);
+			}
+		}
+	}
 
 }
 

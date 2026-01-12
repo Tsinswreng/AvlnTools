@@ -1,25 +1,37 @@
+namespace Tsinswreng.AvlnTools.Tools;
 using System;
 using System.Globalization;
 using Avalonia;
 using Avalonia.Data.Converters;
 
-namespace Tsinswreng.AvlnTools.Tools;
 
-public  partial class ParamFnConvtr<TIn, TRet>
-	:IValueConverter
+public interface IValConvtrWithErr:IValueConverter{
+	public Func<Exception, obj?>? OnErr{get;set;}
+}
+
+/// <summary>
+///
+/// </summary>
+/// <typeparam name="TIn">對應ViewModel</typeparam>
+/// <typeparam name="TRet">對應View</typeparam>
+public partial class ParamFnConvtr<TIn, TRet>
+	:IValConvtrWithErr
 {
 	public Func<TIn, object?, TRet>? FnConv{get;set;}
 	public Func<TRet, object?, TIn>? FnBack{get;set;}
+	public Func<Exception, obj?>? OnErr{get;set;}
 		public ParamFnConvtr(Func<TIn, object?, TRet> FnConv){
 			this.FnConv = FnConv;
 		}
 
 	public ParamFnConvtr(
 		Func<TIn, object?, TRet> FnConv
-		,Func<TRet, object?, TIn> FnBack
+		,Func<TRet, object?, TIn>? FnBack = null
+		,Func<Exception?, obj?>? OnErr = null
 	){
 		this.FnConv = FnConv;
 		this.FnBack = FnBack;
+		this.OnErr = OnErr;
 	}
 
 	public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture) {
@@ -27,31 +39,52 @@ public  partial class ParamFnConvtr<TIn, TRet>
 			return AvaloniaProperty.UnsetValue;
 		}
 		//直強轉 勿用is匹配、緣null is xxx旹恆返false、縱xxx可潙null
-		return FnConv.Invoke((TIn)value!, parameter);
+		try{
+			return FnConv.Invoke((TIn)value!, parameter);
+		}
+		catch (System.Exception e){
+			OnErr?.Invoke(e);
+		}
+		return AvaloniaProperty.UnsetValue;
+
 	}
 
 	public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture) {
 		if(FnBack == null){
 			return AvaloniaProperty.UnsetValue;
 		}
-		return FnBack.Invoke((TRet)value!, parameter);
+		try{
+			return FnBack.Invoke((TRet)value!, parameter);
+		}
+		catch (System.Exception e){
+			OnErr?.Invoke(e);
+		}
+		return AvaloniaProperty.UnsetValue;
+
 	}
 }
 
 
 
+/// <summary>
+///
+/// </summary>
+/// <typeparam name="TIn">對應ViewModel</typeparam>
+/// <typeparam name="TRet">對應View</typeparam>
 public partial class SimpleFnConvtr<TIn, TRet>
-	:IValueConverter
+	:IValConvtrWithErr
 {
 	public Func<TIn, TRet>? FnConv{get;set;}
 	public Func<TRet, TIn>? FnBack{get;set;}
+	public Func<Exception, obj?>? OnErr{get;set;}
 		public SimpleFnConvtr(Func<TIn, TRet> FnConv){
 			this.FnConv = FnConv;
 		}
 
 	public SimpleFnConvtr(
 		Func<TIn, TRet> FnConv
-		,Func<TRet, TIn> FnBack
+		,Func<TRet, TIn>? FnBack = null
+		,Func<Exception, obj?>? OnErr = null
 	){
 		this.FnConv = FnConv;
 		this.FnBack = FnBack;
@@ -62,13 +95,25 @@ public partial class SimpleFnConvtr<TIn, TRet>
 			return AvaloniaProperty.UnsetValue;
 		}
 		//直強轉 勿用is匹配、緣null is xxx旹恆返false、縱xxx可潙null
-		return FnConv.Invoke((TIn)value!);
+		try{
+			return FnConv.Invoke((TIn)value!);
+		}catch(Exception e){
+			OnErr?.Invoke(e);
+			return AvaloniaProperty.UnsetValue;
+		}
+
 	}
 
 	public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture) {
 		if(FnBack == null){
 			return AvaloniaProperty.UnsetValue;
 		}
-		return FnBack.Invoke((TRet)value!);
+		try{
+			return FnBack.Invoke((TRet)value!);
+		}
+		catch (System.Exception e){
+			OnErr?.Invoke(e);
+		}
+		return AvaloniaProperty.UnsetValue;
 	}
 }

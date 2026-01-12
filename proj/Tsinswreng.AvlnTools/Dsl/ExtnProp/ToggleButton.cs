@@ -2,7 +2,7 @@
 namespace Tsinswreng.AvlnTools.Dsl.PropExtn;
 using Avalonia;
 using Avalonia.Controls;
-using C = Avalonia.Controls.CheckBox;
+using C = Avalonia.Controls.Primitives.ToggleButton;
 
 
 public static partial class ExtnProp{

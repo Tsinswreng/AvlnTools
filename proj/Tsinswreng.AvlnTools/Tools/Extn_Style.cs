@@ -3,7 +3,7 @@ using Avalonia.Styling;
 
 namespace Tsinswreng.AvlnTools.Tools;
 
-public static class Extn_Style{
+public static class ExtnStyle{
 	public static Style Set(
 		this Style z, AvaloniaProperty property, object? value
 	){
