@@ -11,6 +11,15 @@ namespace Tsinswreng.AvlnTools.Dsl;
 using Controls = global::Avalonia.Controls.Controls;
 using NonGenericList = System.Collections.IList;
 public static class DslExtn{
+
+	extension<T>(ref T z)
+		where T:struct
+	{
+		public void Set(T o){
+			z = o;
+		}
+	}
+
 	public static NonGenericList AddInit<TItem>(
 		this NonGenericList z
 		,TItem Child
@@ -130,6 +139,7 @@ public static class DslExtn{
 		return z;
 	}
 
+	[Obsolete("Use InitContent")]
 	public static TControl ContentInit<TControl>(
 		this ContentControl ContentControl
 		,TControl ControlAsContent
@@ -139,6 +149,28 @@ public static class DslExtn{
 		FnInit?.Invoke(ControlAsContent);
 		return ControlAsContent;
 	}
+
+	public static TControl InitContent<TControl>(
+		this ContentControl ContentControl
+		,TControl ControlAsContent
+		,Action<TControl>? FnInit = null
+	){
+		ContentControl.Content = ControlAsContent;
+		FnInit?.Invoke(ControlAsContent);
+		return ControlAsContent;
+	}
+
+	public static TControl InitChild<TControl>(
+		this Decorator ContentControl
+		,TControl ControlAsContent
+		,Action<TControl>? FnInit = null
+	)where TControl:Control{
+		ContentControl.Child = ControlAsContent;
+		FnInit?.Invoke(ControlAsContent);
+		return ControlAsContent;
+	}
+
+
 
 	public static TSelf VAlign<TSelf>(
 		this TSelf z

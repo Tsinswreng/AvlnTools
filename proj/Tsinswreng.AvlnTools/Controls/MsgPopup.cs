@@ -51,7 +51,7 @@ public partial class MsgPopup : UserControl{
 	protected nil Render(){
 		var Top = TopLevel.GetTopLevel(this);
 		_Popup = new Popup{};
-		this.ContentInit(_Popup, o=>{
+		this.InitContent(_Popup, o=>{
 			o.Child = _MsgBox;
 			//o.HorizontalOffset = TopLevel.GetTopLevel
 			o.PlacementTarget = Top;

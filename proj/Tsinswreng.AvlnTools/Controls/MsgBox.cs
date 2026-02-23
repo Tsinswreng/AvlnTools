@@ -53,7 +53,7 @@ public partial class MsgBox : UserControl{
 		//Content = Root.Grid;
 		// Content = _Border;
 		// _Border.Child = Root.Grid;
-		this.ContentInit(_Border, o=>{
+		this.InitContent(_Border, o=>{
 			o.Child = Root.Grid;
 		});
 		{var o = Root.Grid;
