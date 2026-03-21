@@ -10,9 +10,9 @@ public static class ExtnItemsControl{
 	{
 
 
-		/// <summary>
+		
 		///
-		/// </summary>
+		
 		/// <typeparam name="TEle">須同於ItemsSourceʹ元素ʹ類型、否則內ʹ匿名函數ˋ不珩</typeparam>
 		public TSelf SetItemTemplate<TEle>(
 			Func<TEle, INameScope, Control?> build, bool supportsRecycling = false

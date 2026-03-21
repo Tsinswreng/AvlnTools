@@ -10,9 +10,9 @@ public  partial class ConvDictEntry<K, V> : IValueConverter
 	where K : notnull
 {
 
-/// <summary>
+
 ///
-/// </summary>
+
 /// <param name="value">IDict</param>
 /// <param name="targetType"></param>
 /// <param name="parameter"></param>
@@ -26,9 +26,9 @@ public  partial class ConvDictEntry<K, V> : IValueConverter
 		throw new ArgumentException("Convert: Invalid input");
 	}
 
-/// <summary>
+
 ///
-/// </summary>
+
 /// <param name="value">輸入框更改後之值</param>
 /// <param name="targetType"></param>
 /// <param name="parameter">IDict_Key<K,V></param>

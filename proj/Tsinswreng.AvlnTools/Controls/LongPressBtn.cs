@@ -47,9 +47,9 @@ public partial class LongPressBtn
 
 	#region Fn
 
-/// <summary>
+
 /// Call Init() after construct
-/// </summary>
+
 public  partial class LongPressBtnFn
 	:I_Init
 {

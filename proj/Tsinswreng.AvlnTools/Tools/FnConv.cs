@@ -9,9 +9,9 @@ public interface IValConvtrWithErr:IValueConverter{
 	public Func<Exception, obj?>? OnErr{get;set;}
 }
 
-/// <summary>
+
 ///
-/// </summary>
+
 /// <typeparam name="TIn">對應ViewModel</typeparam>
 /// <typeparam name="TRet">對應View</typeparam>
 public partial class ParamFnConvtr<TIn, TRet>
@@ -65,9 +65,9 @@ public partial class ParamFnConvtr<TIn, TRet>
 
 
 
-/// <summary>
+
 ///
-/// </summary>
+
 /// <typeparam name="TIn">對應ViewModel</typeparam>
 /// <typeparam name="TRet">對應View</typeparam>
 public partial class SimpleFnConvtr<TIn, TRet>

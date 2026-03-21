@@ -33,9 +33,9 @@ public partial class MsgBox : UserControl{
 	public Border _Border{get;protected set;} = new ();
 	public Border _BdrTitle{get; protected set;} = new ();
 	public ContentControl _Title{get;} = new();
-	/// <summary>
+	
 	/// 不蔿此設高度則恐 ScrollViewer不效
-	/// </summary>
+	
 	public Border _BdrBody{get; protected set;} = new ();
 	public ContentControl _Body{get;} = new();
 	public SwipeLongPressBtn _CloseBtn{get; protected set;}

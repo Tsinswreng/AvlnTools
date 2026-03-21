@@ -7,14 +7,14 @@ using Avalonia.Markup.Xaml.MarkupExtensions;
 using Avalonia.Markup.Xaml.MarkupExtensions.CompiledBindings;
 namespace Tsinswreng.AvlnTools.Tools;
 
-/// <summary>
+
 //于c#中用編譯期綁定
 // usage:
 // using Ctx = MyDataContext;
 //,new Binding(nameof(ctx.hasValue)) 改成
 //,CBE.Mk<Ctx>(x=>x.hasValue)
 //RelativeBinging直用new Binging即可 不必用此
-/// </summary>
+
 public  partial class CBE : CompiledBindingExtension{
 	public CBE(CompiledBindingPath path):base(path){}
 
@@ -24,9 +24,9 @@ public  partial class CBE : CompiledBindingExtension{
 		return Pth<T, object?>(propertySelector);
 	}
 
-/// <summary>
+
 /// 除首個參數外 禁止依賴參數定義順序㕥傳參 須用命名參數 如 Mk<Ctx>(x=>x.Foo, Mode:BindingMode.TwoWay ...)
-/// </summary>
+
 /// <typeparam name="T"></typeparam>
 /// <param name="PropertySelector"></param>
 /// <param name="Mode"></param>
