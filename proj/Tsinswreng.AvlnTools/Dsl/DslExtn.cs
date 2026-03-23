@@ -20,7 +20,7 @@ public static class DslExtn{
 		}
 	}
 
-	public static NonGenericList AddInit<TItem>(
+	public static NonGenericList A<TItem>(
 		this NonGenericList z
 		,TItem Child
 		,Action<TItem>? FnInit = null
@@ -61,7 +61,7 @@ public static class DslExtn{
 	}
 
 
-	public static ICollection<IStyle> AddInit<TItem>(
+	public static ICollection<IStyle> A<TItem>(
 		this ICollection<IStyle> z
 		,TItem Child
 		,Action<TItem>? FnInit = null
@@ -81,7 +81,7 @@ public static class DslExtn{
 		return z;
 	}
 
-	public static ICollection<Control> AddInit<TItem>(
+	public static ICollection<Control> A<TItem>(
 		this ICollection<Control> z
 		,TItem Child
 		,Action<TItem>? FnInit = null
@@ -96,7 +96,7 @@ public static class DslExtn{
 		,ICollection<Control> Controls
 		,Action<TControl>? FnInit = null
 	)where TControl:Control{
-		Controls.AddInit(z,FnInit);
+		Controls.A(z,FnInit);
 		return z;
 	}
 
@@ -105,12 +105,12 @@ public static class DslExtn{
 		,Panel Panel
 		,Action<TControl>? FnInit = null
 	)where TControl:Control{
-		Panel.AddInit(z,FnInit);
+		Panel.A(z,FnInit);
 		return z;
 	}
 
 
-	public static Controls AddInit<TChild>(
+	public static Controls A<TChild>(
 		this Controls z
 		,TChild Child
 		,Action<TChild>? FnInit = null
@@ -120,12 +120,12 @@ public static class DslExtn{
 		return z;
 	}
 
-	public static Panel AddInit<TChild>(
+	public static Panel A<TChild>(
 		this Panel z
 		,TChild Child
 		,Action<TChild>? FnInit = null
 	)where TChild:Control{
-		z.Children.AddInit(Child,FnInit);
+		z.Children.A(Child,FnInit);
 		return z;
 	}
 

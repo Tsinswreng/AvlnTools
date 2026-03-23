@@ -75,12 +75,12 @@ public partial class MsgBox : UserControl{
 				]);
 			}
 			{{
-				TitleRow.AddInit(_Title, o=>{
+				TitleRow.A(_Title, o=>{
 					o.VerticalAlignment = VertAlign.Center;
 				});
 
 				_CloseBtn = new SwipeLongPressBtn{};
-				TitleRow.AddInit(_CloseBtn, o=>{
+				TitleRow.A(_CloseBtn, o=>{
 					o.Content = "×";
 					o.HorizontalAlignment = HoriAlign.Right;
 					o.Background = Brushes.Red;
@@ -88,14 +88,14 @@ public partial class MsgBox : UserControl{
 			}}//~TitleLine
 
 
-			Root.AddInit(_BdrBody, o=>{
+			Root.A(_BdrBody, o=>{
 				var Scr = new ScrollViewer();
 				o.Child = Scr;
 				{{
 					Scr.Content = _Body;
 				}}//~Scr
 			});
-			Root.AddInit(_BdrBottomView);
+			Root.A(_BdrBottomView);
 			_BdrBottomView.Child = _BottomView;
 		}}//~Root
 		return NIL;
