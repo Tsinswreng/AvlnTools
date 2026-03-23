@@ -15,7 +15,7 @@ namespace Tsinswreng.AvlnTools.Tools;
 //,CBE.Mk<Ctx>(x=>x.hasValue)
 //RelativeBinging直用new Binging即可 不必用此
 
-public  partial class CBE : CompiledBindingExtension{
+public partial class CBE : CompiledBindingExtension{
 	public CBE(CompiledBindingPath path):base(path){}
 
 	public static CompiledBindingPath Pth<T>(
@@ -26,17 +26,10 @@ public  partial class CBE : CompiledBindingExtension{
 
 
 /// 除首個參數外 禁止依賴參數定義順序㕥傳參 須用命名參數 如 Mk<Ctx>(x=>x.Foo, Mode:BindingMode.TwoWay ...)
-
-/// <typeparam name="T"></typeparam>
-/// <param name="PropertySelector"></param>
-/// <param name="Mode"></param>
-/// <param name="Converter"></param>
-/// <param name="Path"></param>
-/// <param name="Source"></param>
-/// <param name="DataType"></param>
-/// <returns></returns>
 	public static CompiledBindingExtension Mk<T>(
 		Expression<Func<T, object?>> PropertySelector
+		//do not rename the following param
+		//keep them the same as the prop of Binding
 		,BindingMode Mode = default
 		,IValueConverter? Converter = default
 		,object? ConverterParameter = default

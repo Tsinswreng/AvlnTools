@@ -1,11 +1,15 @@
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using Avalonia;
 using Avalonia.Collections;
 using Avalonia.Controls;
 using Avalonia.Data;
+using Avalonia.Data.Converters;
 using Avalonia.Layout;
+using Avalonia.Markup.Xaml.MarkupExtensions.CompiledBindings;
 using Avalonia.Styling;
+using Tsinswreng.AvlnTools.Tools;
 
 namespace Tsinswreng.AvlnTools.Dsl;
 using Controls = global::Avalonia.Controls.Controls;
@@ -19,6 +23,44 @@ public static class DslExtn{
 			z = o;
 		}
 	}
+	
+	public static BindingExpressionBase CBind<TTar>
+	(
+		this AvaloniaObject z, AvaloniaProperty AvlnProp
+		,Expression<Func<TTar, object?>> TargetPropSlctr
+		//do not rename the following param
+		//keep them the same as the prop of Binding
+		,BindingMode Mode = default
+		,IValueConverter? Converter = default
+		,object? ConverterParameter = default
+		,CompiledBindingPath? Path = default
+		,object? Source = default
+		,Type? DataType = default
+	){
+		return z.Bind(AvlnProp, CBE.Mk(
+			TargetPropSlctr, Mode, Converter, ConverterParameter, Path, Source, DataType
+		));
+	}
+
+	//下ʹ方法 須 手動傳兩泛型參數、不便也
+	// public static BindingExpressionBase CBind<TCtrl, TTar>
+	// (
+	// 	this TCtrl z, Func<TCtrl, AvaloniaProperty> AvlnPropScltr
+	// 	,Expression<Func<TTar, object?>> TargetPropSlctr
+	// 	,BindingMode Mode = default
+	// 	,IValueConverter? Converter = default
+	// 	,object? ConverterParameter = default
+	// 	,CompiledBindingPath? Path = default
+	// 	,object? Source = default
+	// 	,Type? DataType = default
+	// )where TCtrl:Control
+	// {
+	// 	var AvlnProp = AvlnPropScltr(z);
+	// 	return z.Bind(AvlnProp, CBE.Mk(
+	// 		TargetPropSlctr, Mode, Converter, ConverterParameter, Path, Source, DataType
+	// 	));
+	// }
+
 
 	public static NonGenericList A<TItem>(
 		this NonGenericList z
