@@ -18,9 +18,9 @@ public partial class AutoGrid
 		this.IsRow = IsRow;
 	}
 
-	public int Count => throw new NotImplementedException();
+	public int Count => Grid.Children.Count;
 
-	public bool IsReadOnly => throw new NotImplementedException();
+	public bool IsReadOnly => false;
 
 	protected ICollection<Control> Inner{get{
 		return Grid.Children;
