@@ -211,19 +211,15 @@ public static class DslExtn{
 		FnInit?.Invoke(ControlAsContent);
 		return ControlAsContent;
 	}
-
-
-
-	public static TSelf VAlign<TSelf>(
-		this TSelf z
-		,VerticalAlignment v
-	)
-		where TSelf:Layoutable
-	{
-		z.VerticalAlignment = v;
-		return z;
+	
+	public class ClsHorizontalAlignment{
+		public static ClsHorizontalAlignment Inst = new();
+		public HorizontalAlignment Stretch=>HorizontalAlignment.Stretch;
+		public HorizontalAlignment Left=>HorizontalAlignment.Left;
+		public HorizontalAlignment Center=>HorizontalAlignment.Center;
+		public HorizontalAlignment Right=>HorizontalAlignment.Right;
 	}
-
+	
 	public static TSelf HAlign<TSelf>(
 		this TSelf z
 		,HorizontalAlignment v
@@ -233,6 +229,85 @@ public static class DslExtn{
 		z.HorizontalAlignment = v;
 		return z;
 	}
+
+	public static TSelf HAlign<TSelf>(
+		this TSelf z
+		,Func<ClsHorizontalAlignment, HorizontalAlignment> Fn
+	)
+		where TSelf:Layoutable
+	{
+		z.HorizontalAlignment = Fn(ClsHorizontalAlignment.Inst);
+		return z;
+	}
+	
+	public static TSelf HCAlign<TSelf>(
+		this TSelf z
+		,HorizontalAlignment v
+	)
+		where TSelf:ContentControl
+	{
+		z.HorizontalContentAlignment = v;
+		return z;
+	}
+
+	public static TSelf HCAlign<TSelf>(
+		this TSelf z
+		,Func<ClsHorizontalAlignment, HorizontalAlignment> Fn
+	)
+		where TSelf:ContentControl
+	{
+		z.HorizontalContentAlignment = Fn(ClsHorizontalAlignment.Inst);
+		return z;
+	}
+	
+
+	public class ClsVerticalAlignment{
+		public static ClsVerticalAlignment Inst = new();
+		public VerticalAlignment Stretch=>VerticalAlignment.Stretch;
+		public VerticalAlignment Top=>VerticalAlignment.Top;
+		public VerticalAlignment Center=>VerticalAlignment.Center;
+		public VerticalAlignment Bottom=>VerticalAlignment.Bottom;
+	}
+	public static TSelf VAlign<TSelf>(
+		this TSelf z
+		,VerticalAlignment v
+	)
+		where TSelf:Layoutable
+	{
+		z.VerticalAlignment = v;
+		return z;
+	}
+	
+	public static TSelf VAlign<TSelf>(
+		this TSelf z
+		,Func<ClsVerticalAlignment, VerticalAlignment> Fn
+	)
+		where TSelf:Layoutable
+	{
+		z.VerticalAlignment = Fn(ClsVerticalAlignment.Inst);
+		return z;
+	}
+	
+	public static TSelf VCAlign<TSelf>(
+		this TSelf z
+		,VerticalAlignment v
+	)
+		where TSelf:ContentControl
+	{
+		z.VerticalContentAlignment = v;
+		return z;
+	}
+	
+	public static TSelf VCAlign<TSelf>(
+		this TSelf z
+		,Func<ClsVerticalAlignment, VerticalAlignment> Fn
+	)
+		where TSelf:ContentControl
+	{
+		z.VerticalContentAlignment = Fn(ClsVerticalAlignment.Inst);
+		return z;
+	}
+
 
 	extension<TCtrl>(TCtrl z)
 		where TCtrl:Control
@@ -246,7 +321,16 @@ public static class DslExtn{
 				z.Bind(value.property,value.binding);
 			}
 		}
+		// public HorizontalAlignment HAlign{
+		// 	get=>z.HorizontalAlignment;
+		// 	set=>z.HorizontalAlignment = value;
+		// }
+		// public VerticalAlignment VAlign{
+		// 	get=>z.VerticalAlignment;
+		// 	set=>z.VerticalAlignment = value;
+		// }
 	}
+	
 
 }
 

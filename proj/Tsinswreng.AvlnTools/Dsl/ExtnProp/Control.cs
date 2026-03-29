@@ -9,6 +9,7 @@ using C = Avalonia.Controls.Control;
 public static partial class ExtnProp{
 	extension(C z){
 		public StyledProperty<obj?> PropDataContext=>C.DataContextProperty;
+		public StyledProperty<bool> PropIsVisible=>C.IsVisibleProperty;
 	}
 	public static StyledProperty<obj?> PropDataContext_(
 		this C z
