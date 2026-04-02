@@ -10,6 +10,7 @@ using Avalonia.Layout;
 using Avalonia.Markup.Xaml.MarkupExtensions.CompiledBindings;
 using Avalonia.Styling;
 using Tsinswreng.AvlnTools.Tools;
+using Tsinswreng.CsCore;
 
 namespace Tsinswreng.AvlnTools.Dsl;
 using Controls = global::Avalonia.Controls.Controls;
@@ -72,16 +73,6 @@ public static class DslExtn{
 		return z;
 	}
 
-	public static Style Attach(
-		this Style z
-		,Styles Styles
-		,Action<Style>? FnInit = null
-	){
-		FnInit?.Invoke(z);
-		Styles.Add(z);
-		return z;
-	}
-
 	public static Style AddTo(
 		this Style z
 		,Styles Styles
@@ -92,17 +83,6 @@ public static class DslExtn{
 		return z;
 	}
 
-	public static IStyle Attach(
-		this IStyle z
-		,Styles Styles
-		,Action<IStyle>? FnInit = null
-	){
-		FnInit?.Invoke(z);
-		Styles.Add(z);
-		return z;
-	}
-
-
 	public static ICollection<IStyle> A<TItem>(
 		this ICollection<IStyle> z
 		,TItem Child
@@ -112,17 +92,7 @@ public static class DslExtn{
 		FnInit?.Invoke(Child);
 		return z;
 	}
-
-	public static ICollection<TItem> AddInitT<TItem>(
-		this ICollection<TItem> z
-		,TItem Child
-		,Action<TItem>? FnInit = null
-	){
-		z.Add(Child!);
-		FnInit?.Invoke(Child);
-		return z;
-	}
-
+	
 	public static ICollection<Control> A<TItem>(
 		this ICollection<Control> z
 		,TItem Child
@@ -132,26 +102,8 @@ public static class DslExtn{
 		FnInit?.Invoke(Child);
 		return z;
 	}
-
-	public static TControl Attach<TControl>(
-		this TControl z
-		,ICollection<Control> Controls
-		,Action<TControl>? FnInit = null
-	)where TControl:Control{
-		Controls.A(z,FnInit);
-		return z;
-	}
-
-	public static TControl Attach<TControl>(
-		this TControl z
-		,Panel Panel
-		,Action<TControl>? FnInit = null
-	)where TControl:Control{
-		Panel.A(z,FnInit);
-		return z;
-	}
-
-
+	
+	[Doc(@$"for .Children.A()")]
 	public static Controls A<TChild>(
 		this Controls z
 		,TChild Child
@@ -171,18 +123,7 @@ public static class DslExtn{
 		return z;
 	}
 
-	public static TControl ContentFor<TControl>(
-		this TControl z
-		,ContentControl ContentControl
-		,Action<TControl>? FnInit = null
-	){
-		ContentControl.Content = z;
-		FnInit?.Invoke(z);
-		return z;
-	}
-
-	[Obsolete("Use InitContent")]
-	public static TControl ContentInit<TControl>(
+	public static TControl SetContent<TControl>(
 		this ContentControl ContentControl
 		,TControl ControlAsContent
 		,Action<TControl>? FnInit = null
@@ -192,17 +133,7 @@ public static class DslExtn{
 		return ControlAsContent;
 	}
 
-	public static TControl InitContent<TControl>(
-		this ContentControl ContentControl
-		,TControl ControlAsContent
-		,Action<TControl>? FnInit = null
-	){
-		ContentControl.Content = ControlAsContent;
-		FnInit?.Invoke(ControlAsContent);
-		return ControlAsContent;
-	}
-
-	public static TControl InitChild<TControl>(
+	public static TControl SetChild<TControl>(
 		this Decorator ContentControl
 		,TControl ControlAsContent
 		,Action<TControl>? FnInit = null
