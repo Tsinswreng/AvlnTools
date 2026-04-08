@@ -40,10 +40,10 @@ public partial class CBE : CompiledBindingExtension{
 		var r = new CBE(Pth<T, object?>(PropertySelector)){};
 		r.Mode = Mode;
 		r.Converter = Converter;
-		if(Path != null){r.Path = Path;}
-		if(Source!= null){r.Source = Source;}
-		if(DataType!= null){r.DataType = DataType;}
-		if(ConverterParameter != null){r.ConverterParameter = ConverterParameter;}
+		r.ConverterParameter = ConverterParameter;
+		r.DataType = DataType;
+		if(Path is not null){r.Path = Path;}
+		if(Source is not null ){r.Source = Source;}
 		return r;
 	}
 
@@ -66,15 +66,17 @@ public partial class CBE : CompiledBindingExtension{
 				ValidateObjectBinding(typeof(T), typeof(Tar));
 				break;
 			default:
-				throw new ArgumentException("表达式必须为属性访问或对象绑定");
+				throw new ArgumentException("The expression must be a property access or object binding.");
 		}
 
 		return builder.Build();
 	}
 
 	private static void ValidateObjectBinding(Type sourceType, Type targetType){
-		if (!targetType.IsAssignableFrom(sourceType))
-			throw new InvalidOperationException($"类型不兼容：{sourceType}无法转换为{targetType}");
+		if (!targetType.IsAssignableFrom(sourceType)){
+			//throw new InvalidOperationException($"类型不兼容：{sourceType}无法转换为{targetType}");
+			throw new InvalidOperationException($"Type mismatch: {sourceType} cannot be assigned to {targetType}");
+		}
 	}
 
 	private static void ProcessMemberExpression<T>(
