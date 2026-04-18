@@ -2,6 +2,7 @@ using System;
 using Avalime.controls;
 using Avalonia.Controls;
 using Avalonia.Input;
+using Avalonia;
 using Avalonia.Threading;
 using Tsinswreng.CsCore;
 //TOFIX 觸屏時邊移動邊長按(如scrollView中上下滑 亦祘)
@@ -30,12 +31,22 @@ public partial class LongPressBtn
 
 	protected override void OnPointerPressed(PointerPressedEventArgs e){
 		base.OnPointerPressed(e);
-		FnLongPressBtn._OnPointerPressed(e);
+		FnLongPressBtn._OnPointerPressed(e.GetPosition(this));
 	}
 
 	protected override void OnPointerReleased(PointerReleasedEventArgs e){
 		base.OnPointerReleased(e);
 		FnLongPressBtn._OnPointerReleased(e);
+	}
+
+	protected override void OnPointerMoved(PointerEventArgs e){
+		base.OnPointerMoved(e);
+		FnLongPressBtn._OnPointerMoved(e.GetPosition(this));
+	}
+
+	protected override void OnPointerCaptureLost(PointerCaptureLostEventArgs e){
+		base.OnPointerCaptureLost(e);
+		FnLongPressBtn._OnPointerCaptureLost();
 	}
 
 	protected override void OnClick(){
@@ -55,6 +66,9 @@ public  partial class LongPressBtnFn
 {
 	protected DispatcherTimer _PressTimer;
 	protected bool _IsLongPressTriggered;
+	protected bool _IsPointerPressed;
+	protected Point _PressStartPoint;
+	protected f64 _MoveCancelThresholdPx = 8;
 
 	protected bool _HasLongPressed = false;
 	protected i64 _LongPressDurationMs = 500;
@@ -81,19 +95,45 @@ public  partial class LongPressBtnFn
 		return NIL;
 	}
 
-	public nil _OnPointerPressed(PointerPressedEventArgs e){
+	public nil _OnPointerPressed(Point pressStartPoint){
 		_IsLongPressTriggered = false;
+		_HasLongPressed = false;
+		_IsPointerPressed = true;
+		_PressStartPoint = pressStartPoint;
 		_PressTimer.Start();
 		return NIL;
 	}
 
 	public nil _OnPointerReleased(PointerReleasedEventArgs e){
+		_IsPointerPressed = false;
 		_PressTimer.Stop(); // 松开时停止计时器
 		if (!_IsLongPressTriggered) {
 			// 未触发长按时，执行点击逻辑
 			//OnClick();
 			//onClick?.Invoke();
 		}
+		_IsLongPressTriggered = false;
+		return NIL;
+	}
+
+	public nil _OnPointerMoved(Point p){
+		if(!_IsPointerPressed || _IsLongPressTriggered){
+			return NIL;
+		}
+		var dx = p.X - _PressStartPoint.X;
+		var dy = p.Y - _PressStartPoint.Y;
+		var moved2 = dx*dx + dy*dy;
+		var threshold2 = _MoveCancelThresholdPx * _MoveCancelThresholdPx;
+		if(moved2 > threshold2){
+			_PressTimer.Stop();
+			_IsPointerPressed = false;
+		}
+		return NIL;
+	}
+
+	public nil _OnPointerCaptureLost(){
+		_IsPointerPressed = false;
+		_PressTimer.Stop();
 		_IsLongPressTriggered = false;
 		return NIL;
 	}

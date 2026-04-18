@@ -49,14 +49,24 @@ public  partial class SwipeLongPressBtn
 
 	protected override void OnPointerPressed(PointerPressedEventArgs e) {
 		_SwipeBtnFn._OnPointerPressed(this,e);
-		_LongPressBtnFn._OnPointerPressed(e);
+		_LongPressBtnFn._OnPointerPressed(e.GetPosition(this));
 		base.OnPointerPressed(e);
+	}
+
+	protected override void OnPointerMoved(PointerEventArgs e){
+		_LongPressBtnFn._OnPointerMoved(e.GetPosition(this));
+		base.OnPointerMoved(e);
 	}
 
 	protected override void OnPointerReleased(PointerReleasedEventArgs e) {
 		_SwipeBtnFn._OnPointerReleased(this,e);
 		_LongPressBtnFn._OnPointerReleased(e);
 		base.OnPointerReleased(e);
+	}
+
+	protected override void OnPointerCaptureLost(PointerCaptureLostEventArgs e){
+		_LongPressBtnFn._OnPointerCaptureLost();
+		base.OnPointerCaptureLost(e);
 	}
 
 
