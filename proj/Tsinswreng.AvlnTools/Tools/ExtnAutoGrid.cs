@@ -7,10 +7,15 @@ public static class ExtnAutoGrid {
 			get{
 				return z.Grid.ColumnDefinitions;
 			}
+			set{
+				z.Grid.ColumnDefinitions = value;
+			}
 		}
 		public RowDefinitions RowDefs{
 			get{
 				return z.Grid.RowDefinitions;
+			}set{
+				z.Grid.RowDefinitions = value;
 			}
 		}
 	}
